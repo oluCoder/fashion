@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Fit-Web.config Connection String" description="Fit Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:fandadb.database.windows.net,1433;Initial Catalog=FashionDb;Persist Security Info=False;User ID=shetalentcompany;Password=fanda@COMP;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ejiof\\Documents\\Homex\\FashionableFitandFlawless\\FashionableFitandFlawless\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Fit']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,207 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="~/Content/Images/ffflogoresized.jpg" type="image/x-icon" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Fashionable, Fit and Flawless</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    
+    <div class="Layout">
+
+        <div class="visible-lg visible-md">
+            <div class="row eachrow">
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    @using (Html.BeginForm("DisplayItem", "Items", FormMethod.Get))
+                    {
+
+                        <input type="text" class="form-control" placeholder="Search products..." name="product" />
+            <button type="submit" class="btn btn-default" style="background-color:cornsilk">Submit</button>
+            
+                    }
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Content/Images/ffflogoresized.jpg" class="img-responsive" />
+                        <div class="caption" style="color:black">
+                            Fashionable, Fit and Flawless
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-2 col-md-2">
+                    //Admin Section
+                    @if (Request.IsAuthenticated && User.IsInRole("President"))
+                    {
+                        <div class="dropdown2">
+                            <div class="dropbutt eachcont" href="#">
+                                Admin Area<b class="caret"></b>
+                            </div>
+                            <ul class="dropdown2-cont">
+
+                                <li>@Html.ActionLink("Add Furniture", "Create", "Furnitures")</li>
+
+                                <li>@Html.ActionLink("All Furniture List", "Index", "Furnitures")</li>
+
+
+
+                                <li class="divider"></li>
+                                <li class="dropdown-header" style="color:bisque">Banners</li>
+
+                                <li>@Html.ActionLink("Add Banner", "Create", "BannerSlides")</li>
+                                <li>@Html.ActionLink("View Banners", "Index", "BannerSlides")</li>
+                                @*<li>@Html.ActionLink("Add Html Banner", "Create", "HtmlBanners")</li>
+                    <li>@Html.ActionLink("View Html Banners", "Index", "HtmlBanners")</li>*@
+
+                                <li class="divider"></li>
+                                <li class="dropdown-header" style="color:bisque">Furniture Types</li>
+                                <li>@Html.ActionLink("Add Role", "Create", "Roles")</li>
+
+                                <li>@Html.ActionLink("Add Furniture Type", "Create", "FurnitureType")</li>
+
+                                <li>@Html.ActionLink("Furniture Type List", "Index", "FurnitureType")</li>
+
+                            </ul>
+
+                        </div>
+                    }
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="dropdown2">
+                                <div class="dropbutt glybut"><b class="glyphicon glyphicon-user bigglyp2"></b>  @User.Identity.GetUserName()</div>
+                                <ul class="dropdown2-cont acct">
+                                    <li class="hvr-bounce-to-bottom">
+                                        @Html.ActionLink("Manage Account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                    </li>
+                                    <li class="hvr-bounce-to-bottom"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                </ul>
+                            </div>
+
+                        }
+                    }
+                    else
+                    {
+                        <div class="dropdown2">
+                            <div class="dropbutt glyphicon glyphicon-user bigglyp">Account</div>
+                            <ul class="dropdown2-cont acct">
+                                <li class="hvr-bounce-to-bottom">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                <li class="hvr-bounce-to-bottom">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                            </ul>
+                        </div>
+
+                    }
+
+
+
+                </div>
+
+                @*<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    @Html.Partial("_LoginPartial")
+                </div>*@
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    @Html.Action("_CategoryList", "Categories")
+                </div>
+                
+            </div>
+        </div>
+
+        
+        <div class="visible-sm visible-xs">
+            <div class="row">
+                <div class="col-sm-4 col-xs-4 dropdown2">
+                    <div class="dropbutt eachcont" href="#">
+                        Categories<b class="caret"></b>
+                    </div>
+                    <div class="dropdown2-cont">
+                        @Html.Action("_CategoryList", "Categories")
+                    </div>
+                    <ul>
+                        
+                    </ul>
+                 
+                </div>
+                <div class="col-sm-4 col-xs-4">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Content/Images/ffflogoresized.jpg" class="img-responsive" />
+                        <div class="caption" style="color:black">
+                            Fashionable, Fit and Flawless
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-4 col-xs-4">
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>*@
+
+    <div class="body-content bodycont-fluid">
+        @RenderBody()
+    </div><br />
+
+    <div class="footer container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 footerrow">
+                <span>
+                    @DateTime.Now.Year - Fashionable, Fit and Flawless
+                </span><br />
+                <span>
+                    <a href="https://www.facebook.com/FashionableFitandFlawless/" target="_blank" style="color:white; background-color: blue; font:600">
+                        <span>Like Us on Facebook</span>
+                    </a>
+                </span>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+            </div>
+        </div>
+    </div>
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

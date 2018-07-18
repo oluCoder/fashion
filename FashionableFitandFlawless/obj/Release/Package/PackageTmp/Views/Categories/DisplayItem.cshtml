@@ -1,0 +1,38 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Items>
+@using FashionableFitandFlawless.Models;
+
+
+
+@{
+    ViewBag.Title = "Fashion, Fitness and Beautiful Skin";
+}
+
+<h2>Fashion, Fitness and Beautiful Skin Products</h2>
+
+<div class="container-fluids">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 photo-gallery-card">
+            <div>
+                @Html.DisplayFor(model => item.Name)
+            </div>
+            <div>
+                @if (item.ImageByte != null)
+                {
+                    <img src="@Url.Action("GetImage", "Items", new { id = item.ItemId})" class="img-responsive" alt="@item.Name" />
+                }
+            </div>
+            <div>
+                <span>
+                    @Html.DisplayFor(model => item.Price)
+                </span>
+                <span>
+                    <a href="@Html.ValueFor( model => item.Url)" target="_blank" class="btn btn-defaults"> Buy</a>
+                </span>
+            </div>
+        </div>
+    }
+</div>
+

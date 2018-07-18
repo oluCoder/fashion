@@ -1,0 +1,42 @@
+﻿@model FashionableFitandFlawless.Models.SubCategory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SubCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.category.Section)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.Section)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categories)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categories)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

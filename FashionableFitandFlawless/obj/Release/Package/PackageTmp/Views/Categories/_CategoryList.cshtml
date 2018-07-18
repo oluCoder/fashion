@@ -1,0 +1,21 @@
+﻿@model IEnumerable<FashionableFitandFlawless.Models.Category>
+
+<div class="container category">
+    @foreach (var item in Model)
+    {
+        <div class="catItem">
+            <a href="@Url.Action("DisplayItem", "Items", new { product = item.Section})">
+                @Html.DisplayFor(modelItem => item.Section)
+            </a>
+
+        </div>
+        @*<div class="dropdown2">
+            
+            <div class="dropdown2-cont">
+                @Html.Action("Subs", "SubCategories", new { subs = item.Section })
+            </div>
+        </div>*@
+        
+    }
+</div>
+
